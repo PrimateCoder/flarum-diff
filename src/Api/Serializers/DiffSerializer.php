@@ -8,6 +8,7 @@ use Flarum\Extension\ExtensionManager;
 use Flarum\Post\CommentPost;
 use Flarum\Post\Post;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Flarum\User\User;
 use Jfcherng\Diff\Differ;
 use Jfcherng\Diff\Factory\RendererFactory;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -260,9 +261,9 @@ class DiffSerializer extends AbstractSerializer
             return $this->commentPost->getFormatter()->render(
                 $this->commentPost->getFormatter()->parse(
                     $content,
-                    $this->commentPost
-                ),
-                $this->commentPost
+                    $this->commentPost,
+                    $this->getActor()
+                )
             );
         }
 
